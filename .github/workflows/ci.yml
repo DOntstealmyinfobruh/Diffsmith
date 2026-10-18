@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install -e ".[dev]"
+      - run: git config --global user.email ci@example.com && git config --global user.name CI
+      - name: Unit tests
+        run: pytest -q
+      - name: Verify all 50 eval tasks (reference solutions, no API key)
+        run: python eval/run_eval.py --oracle --embedder hashing --out /tmp/oracle.json

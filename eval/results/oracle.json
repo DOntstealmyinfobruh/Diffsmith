@@ -1,0 +1,1418 @@
+{
+  "summary": {
+    "mode": "oracle",
+    "model": null,
+    "embedder": "hashing",
+    "padding_files": 0,
+    "tasks": 50,
+    "retrieval_recall": 1.0,
+    "avg_context_reduction": 0.079,
+    "checks_failing_on_baseline": 50,
+    "completed": 50,
+    "completion_rate": 1.0,
+    "broken_edits_blocked": 0,
+    "broken_edits_committed": 0,
+    "block_rate": null,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "wall_seconds": 68.1
+  },
+  "tasks": [
+    {
+      "id": "tq-01",
+      "request": "Add a clear_done() method to TaskStore that removes all completed tasks and returns how many it removed.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/store.py",
+        "tests/test_taskq.py",
+        "taskq/cli.py",
+        "taskq/formatting.py",
+        "taskq/dates.py",
+        "taskq/models.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.00821314102564108,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-02",
+      "request": "Support a new \"urgent\" priority above \"high\". Urgent tasks should be marked with \"(!!)\" when formatted, the way high-priority tasks get \"(!)\".",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "tests/test_taskq.py",
+        "taskq/store.py",
+        "taskq/formatting.py",
+        "taskq/models.py",
+        "taskq/cli.py",
+        "taskq/__init__.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.0983573717948718,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-03",
+      "request": "Task titles should have leading and trailing whitespace stripped when a task is created.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/formatting.py",
+        "tests/test_taskq.py",
+        "taskq/store.py",
+        "taskq/dates.py",
+        "taskq/cli.py",
+        "taskq/models.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.00821314102564108,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 0.9,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-04",
+      "request": "Add rename(task_id, new_title) to TaskStore. It returns the task, and raises ValueError if the new title is empty or only whitespace.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "tests/test_taskq.py",
+        "taskq/store.py",
+        "taskq/models.py",
+        "taskq/cli.py",
+        "taskq/formatting.py",
+        "taskq/dates.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.00821314102564108,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-05",
+      "request": "Make parse_due understand \"yesterday\" too.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/dates.py",
+        "taskq/cli.py",
+        "tests/test_taskq.py",
+        "taskq/formatting.py",
+        "taskq/store.py",
+        "taskq/models.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.00821314102564108,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-06",
+      "request": "parse_due should accept relative dates like \"in 3 days\" or \"in 1 day\".",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/dates.py",
+        "taskq/cli.py",
+        "tests/test_taskq.py",
+        "taskq/store.py",
+        "taskq/models.py",
+        "taskq/formatting.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.00821314102564108,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-07",
+      "request": "Add TaskStore.overdue(today=None) that returns unfinished tasks whose due date has passed, sorted by due date (earliest first).",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "tests/test_taskq.py",
+        "taskq/dates.py",
+        "taskq/store.py",
+        "taskq/cli.py",
+        "taskq/formatting.py",
+        "taskq/models.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.00821314102564108,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-08",
+      "request": "Add a find(text) method to TaskStore that returns tasks whose title contains the text, ignoring case, ordered by id.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/store.py",
+        "tests/test_taskq.py",
+        "taskq/cli.py",
+        "taskq/formatting.py",
+        "taskq/dates.py",
+        "taskq/models.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.00821314102564108,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.1,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-09",
+      "request": "When formatting a task, show its tags at the very end of the line in square brackets, comma separated, like `[ ] #1 milk [home, errands]`. Tasks without tags should look exactly as they do now.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/formatting.py",
+        "taskq/store.py",
+        "tests/test_taskq.py",
+        "taskq/__init__.py",
+        "taskq/dates.py",
+        "taskq/models.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.21875,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-10",
+      "request": "Add a `delete <id>` command to the CLI. It deletes the task and outputs \"Deleted #<id>\".",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/cli.py",
+        "taskq/store.py",
+        "tests/test_taskq.py",
+        "taskq/formatting.py",
+        "taskq/models.py",
+        "taskq/dates.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.00821314102564108,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-11",
+      "request": "Add a --pending flag to the CLI's list command so it shows only tasks that aren't done.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/cli.py",
+        "tests/test_taskq.py",
+        "taskq/store.py",
+        "taskq/formatting.py",
+        "taskq/__init__.py",
+        "taskq/models.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.0983573717948718,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-12",
+      "request": "Let the CLI's add command take a --tag option that can be repeated to attach several tags.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/cli.py",
+        "taskq/store.py",
+        "taskq/models.py",
+        "tests/test_taskq.py",
+        "taskq/dates.py",
+        "taskq/__init__.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.07311698717948723,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-13",
+      "request": "Add JSON persistence: TaskStore.save(path) writes all tasks to a JSON file, and a TaskStore.load(path) classmethod reads them back, keeping ids, done status, priority, tags and due dates. New tasks added after loading must get ids that don't collide.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/store.py",
+        "tests/test_taskq.py",
+        "taskq/models.py",
+        "taskq/cli.py",
+        "taskq/formatting.py",
+        "taskq/dates.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.00821314102564108,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.1,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-14",
+      "request": "Add a summary(tasks) function to the formatting module that returns text like \"3 tasks, 1 done\". Use \"1 task\" (singular) when there is exactly one task.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/dates.py",
+        "taskq/formatting.py",
+        "taskq/store.py",
+        "taskq/cli.py",
+        "tests/test_taskq.py",
+        "taskq/models.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.00821314102564108,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-15",
+      "request": "Let TaskStore.list take sort=\"priority\" to order tasks by priority (most important first), breaking ties by id. The default order stays by id.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/store.py",
+        "taskq/cli.py",
+        "tests/test_taskq.py",
+        "taskq/formatting.py",
+        "taskq/models.py",
+        "taskq/dates.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.00821314102564108,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.2,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-16",
+      "request": "Completing a task that is already done should raise a ValueError instead of silently succeeding.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/models.py",
+        "tests/test_taskq.py",
+        "taskq/store.py",
+        "taskq/cli.py",
+        "taskq/formatting.py",
+        "taskq/dates.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.00821314102564108,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.2,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-17",
+      "request": "Add an uncomplete(task_id) method to TaskStore that marks a task as not done, and an `undo <id>` CLI command that calls it and prints the task.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/store.py",
+        "taskq/cli.py",
+        "tests/test_taskq.py",
+        "taskq/formatting.py",
+        "taskq/models.py",
+        "taskq/dates.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.00821314102564108,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-01",
+      "request": "slugify should turn accented letters into plain ASCII, so \"Caf\u00e9 D\u00e9j\u00e0 Vu\" becomes \"cafe-deja-vu\".",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/slug.py",
+        "tests/test_textkit.py",
+        "textkit/__init__.py",
+        "textkit/clean.py",
+        "textkit/case.py",
+        "textkit/wrap.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.14794215795328147,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-02",
+      "request": "Add an optional max_length argument to slugify. Cut the slug to at most that many characters, and never leave a hyphen at the end after cutting.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/stats.py",
+        "textkit/slug.py",
+        "tests/test_textkit.py",
+        "textkit/__init__.py",
+        "textkit/case.py",
+        "textkit/wrap.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.05635891731553577,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-03",
+      "request": "Let slugify take a sep argument for the separator, defaulting to \"-\". For example slugify(\"Hello World\", sep=\"_\") gives \"hello_world\".",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/slug.py",
+        "tests/test_textkit.py",
+        "textkit/clean.py",
+        "textkit/case.py",
+        "textkit/__init__.py",
+        "textkit/wrap.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.14794215795328147,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 0.9,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-04",
+      "request": "to_snake mishandles acronyms: \"parseHTTPRequest\" should become \"parse_http_request\" and \"HTTPServer\" should become \"http_server\".",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/case.py",
+        "tests/test_textkit.py",
+        "textkit/clean.py",
+        "textkit/__init__.py",
+        "textkit/slug.py",
+        "textkit/wrap.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.14794215795328147,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-05",
+      "request": "to_camel should also accept kebab-case and space-separated words, e.g. \"parse-http request\" -> \"parseHttpRequest\".",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/case.py",
+        "tests/test_textkit.py",
+        "textkit/stats.py",
+        "textkit/clean.py",
+        "textkit/__init__.py",
+        "textkit/slug.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.20207638116425664,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-06",
+      "request": "Add a to_pascal function to the case module: \"parse_http_request\" -> \"ParseHttpRequest\".",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/case.py",
+        "tests/test_textkit.py",
+        "textkit/slug.py",
+        "textkit/clean.py",
+        "textkit/__init__.py",
+        "textkit/wrap.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.14794215795328147,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 0.9,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-07",
+      "request": "Add to_kebab(name) that converts camelCase or snake_case to kebab-case: \"parseHttpRequest\" -> \"parse-http-request\".",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/case.py",
+        "tests/test_textkit.py",
+        "textkit/slug.py",
+        "textkit/clean.py",
+        "textkit/__init__.py",
+        "textkit/wrap.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.14794215795328147,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 0.9,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-08",
+      "request": "word_count should treat hyphenated words like \"well-known\" as one word, and count numbers and words with digits (\"2026\", \"3D\") as words.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/stats.py",
+        "tests/test_textkit.py",
+        "textkit/wrap.py",
+        "textkit/case.py",
+        "textkit/slug.py",
+        "textkit/__init__.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.05635891731553577,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-09",
+      "request": "Give top_words a skip_stopwords flag (default False). When it's on, ignore the words the, a, an, and, or, of, to and in.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/stats.py",
+        "tests/test_textkit.py",
+        "textkit/slug.py",
+        "textkit/case.py",
+        "textkit/__init__.py",
+        "textkit/clean.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.20207638116425664,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.1,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-10",
+      "request": "Add sentence_count(text) to the stats module. Sentences end with . ! or ?; text without an ending mark still counts as one sentence, and empty text has zero.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/stats.py",
+        "tests/test_textkit.py",
+        "textkit/slug.py",
+        "textkit/clean.py",
+        "textkit/wrap.py",
+        "textkit/__init__.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.13422321097515755,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-11",
+      "request": "reading_time_minutes should return 0 for empty or whitespace-only text instead of 1. Non-empty text still takes at least 1 minute.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "tests/test_textkit.py",
+        "textkit/stats.py",
+        "textkit/clean.py",
+        "textkit/slug.py",
+        "textkit/__init__.py",
+        "textkit/wrap.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.13422321097515755,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-12",
+      "request": "wrap() leaves words longer than the width sticking out. Split such words across lines so no line is longer than width.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/wrap.py",
+        "textkit/stats.py",
+        "tests/test_textkit.py",
+        "textkit/case.py",
+        "textkit/__init__.py",
+        "textkit/clean.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.06266221727845755,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 0.9,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-13",
+      "request": "Add an ellipsis argument to truncate (default \"...\") so callers can use a different marker such as the single character \"\u2026\". The result must still fit within limit.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/wrap.py",
+        "tests/test_textkit.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.41490545050055616,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-14",
+      "request": "Add a whole_words option to truncate. When true, don't cut a word in half: back off to the last space that fits, then add the ellipsis.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "tests/test_textkit.py",
+        "textkit/stats.py",
+        "textkit/wrap.py",
+        "textkit/case.py",
+        "textkit/__init__.py",
+        "textkit/slug.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.05635891731553577,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-15",
+      "request": "strip_html should also decode HTML entities such as &amp;, &lt;, &gt;, &quot; and &#39;.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/clean.py",
+        "tests/test_textkit.py",
+        "textkit/slug.py",
+        "textkit/stats.py",
+        "textkit/case.py",
+        "textkit/__init__.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.20207638116425664,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-16",
+      "request": "Add normalize_quotes(text) to the clean module. It replaces curly single quotes with ' and curly double quotes with \".",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/clean.py",
+        "tests/test_textkit.py",
+        "textkit/slug.py",
+        "textkit/wrap.py",
+        "textkit/stats.py",
+        "textkit/__init__.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.13422321097515755,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.1,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-17",
+      "request": "strip_html should remove <script> and <style> blocks completely, including the code inside them, not just the tags.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/clean.py",
+        "tests/test_textkit.py",
+        "textkit/wrap.py",
+        "textkit/slug.py",
+        "textkit/stats.py",
+        "textkit/__init__.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.13422321097515755,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 0.9,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "lg-01",
+      "request": "Let Money be multiplied by an integer, on either side: Money(250) * 3 and 3 * Money(250) both give Money(750).",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "ledger/money.py",
+        "tests/test_ledger.py",
+        "ledger/__init__.py",
+        "ledger/fx.py",
+        "ledger/account.py",
+        "ledger/report.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.032929782082324444,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 0.9,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "lg-02",
+      "request": "Make Money amounts comparable with <, <=, > and >= when they share a currency. Comparing different currencies should raise CurrencyMismatch.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "ledger/money.py",
+        "ledger/__init__.py",
+        "tests/test_ledger.py",
+        "ledger/account.py",
+        "ledger/errors.py",
+        "ledger/fx.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.1324455205811138,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "lg-03",
+      "request": "Money.from_str should accept a leading \"$\" and thousands separators, e.g. \"$1,234.50\".",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "tests/test_ledger.py",
+        "ledger/money.py",
+        "ledger/account.py",
+        "ledger/fx.py",
+        "ledger/__init__.py",
+        "ledger/report.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.032929782082324444,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "lg-04",
+      "request": "Money.from_str silently drops digits after the second decimal place. It should raise ValueError for amounts like \"1.234\" instead.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "ledger/account.py",
+        "tests/test_ledger.py",
+        "ledger/__init__.py",
+        "ledger/money.py",
+        "ledger/errors.py",
+        "ledger/fx.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.1324455205811138,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.1,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "lg-05",
+      "request": "Money.from_str crashes on amounts with nothing before the decimal point. Make \".5\" and \"-.75\" work.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "ledger/__init__.py",
+        "tests/test_ledger.py",
+        "ledger/money.py",
+        "ledger/account.py",
+        "ledger/fx.py",
+        "ledger/errors.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.1324455205811138,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 0.9,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "lg-06",
+      "request": "Format Money with thousands separators, e.g. Money(123456789) prints as \"1,234,567.89 USD\".",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "tests/test_ledger.py",
+        "ledger/fx.py",
+        "ledger/money.py",
+        "ledger/account.py",
+        "ledger/__init__.py",
+        "ledger/report.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.032929782082324444,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "lg-07",
+      "request": "Add Account.transfer(to_account, amount) that moves money between accounts. It must raise InsufficientFunds when the balance is too low and CurrencyMismatch when the accounts use different currencies, without changing either account in those cases.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "ledger/account.py",
+        "tests/test_ledger.py",
+        "ledger/errors.py",
+        "ledger/report.py",
+        "ledger/money.py",
+        "ledger/__init__.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.07772397094430994,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "lg-08",
+      "request": "Depositing or withdrawing money in a different currency than the account's should raise CurrencyMismatch right away and leave the account unchanged.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "ledger/money.py",
+        "ledger/account.py",
+        "tests/test_ledger.py",
+        "ledger/errors.py",
+        "ledger/report.py",
+        "ledger/fx.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.012348668280871666,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "lg-09",
+      "request": "Add an optional overdraft limit to Account, passed as Account(owner, overdraft=Money(...)). Withdrawals may take the balance negative down to minus that limit. Without it, behavior is unchanged.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "ledger/account.py",
+        "ledger/report.py",
+        "tests/test_ledger.py",
+        "ledger/money.py",
+        "ledger/fx.py",
+        "ledger/__init__.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.032929782082324444,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "lg-10",
+      "request": "Let deposit and withdraw take an optional memo string. The statement should show the memo after the amount, separated by two spaces, e.g. \"deposit  10.00 USD  paycheck\". Lines without a memo stay the same, and the CSV export is unchanged.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "ledger/report.py",
+        "tests/test_ledger.py",
+        "ledger/account.py",
+        "ledger/fx.py",
+        "ledger/money.py",
+        "ledger/errors.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.012348668280871666,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.1,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "lg-11",
+      "request": "Add a running balance column, balance_cents, as the last column of the CSV export.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "ledger/report.py",
+        "tests/test_ledger.py",
+        "ledger/account.py",
+        "ledger/money.py",
+        "ledger/fx.py",
+        "ledger/errors.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.012348668280871666,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "lg-12",
+      "request": "Add from_csv(text, owner) to the report module. It rebuilds an Account from the text that to_csv produces.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "ledger/report.py",
+        "tests/test_ledger.py",
+        "ledger/account.py",
+        "ledger/money.py",
+        "ledger/fx.py",
+        "ledger/errors.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.012348668280871666,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "lg-13",
+      "request": "convert() raises a bare KeyError for currencies it doesn't know. Add an UnknownCurrency error (a LedgerError subclass) in the errors module and raise it instead.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "ledger/errors.py",
+        "tests/test_ledger.py",
+        "ledger/account.py",
+        "ledger/money.py",
+        "ledger/fx.py",
+        "ledger/report.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.012348668280871666,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "lg-14",
+      "request": "Add a total(amounts, currency=\"USD\") function to the money module that sums a list of Money. An empty list gives zero in that currency; mixed currencies raise CurrencyMismatch.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "ledger/account.py",
+        "ledger/money.py",
+        "tests/test_ledger.py",
+        "ledger/fx.py",
+        "ledger/__init__.py",
+        "ledger/errors.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.1324455205811138,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "lg-15",
+      "request": "Add a line right under the statement title that shows the account currency, like \"Currency: USD\".",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "tests/test_ledger.py",
+        "ledger/report.py",
+        "ledger/account.py",
+        "ledger/fx.py",
+        "ledger/money.py",
+        "ledger/errors.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.012348668280871666,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "lg-16",
+      "request": "Give convert() an optional rates argument that overrides the built-in RATES table for that call.",
+      "check_fails_on_baseline": true,
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "ledger/fx.py",
+        "tests/test_ledger.py",
+        "ledger/account.py",
+        "ledger/money.py",
+        "ledger/errors.py",
+        "ledger/report.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.012348668280871666,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "seconds": 1.0,
+      "error": null,
+      "hidden_output": null
+    }
+  ]
+}

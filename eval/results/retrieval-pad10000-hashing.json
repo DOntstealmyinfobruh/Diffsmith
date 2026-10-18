@@ -1,0 +1,714 @@
+{
+  "summary": {
+    "mode": "retrieval-only",
+    "model": null,
+    "embedder": "hashing",
+    "padding_files": 10000,
+    "tasks": 50,
+    "retrieval_recall": 0.96,
+    "avg_context_reduction": 0.9995,
+    "wall_seconds": 240.9
+  },
+  "tasks": [
+    {
+      "id": "tq-01",
+      "request": "Add a clear_done() method to TaskStore that removes all completed tasks and returns how many it removed.",
+      "retrieved": [
+        "taskq/store.py",
+        "tests/test_taskq.py",
+        "taskq/formatting.py",
+        "taskq/cli.py",
+        "vendor/pkg032/order_task_3273.py",
+        "vendor/pkg054/upload_item_5408.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9995103661242981
+    },
+    {
+      "id": "tq-02",
+      "request": "Support a new \"urgent\" priority above \"high\". Urgent tasks should be marked with \"(!!)\" when formatted, the way high-priority tasks get \"(!)\".",
+      "retrieved": [
+        "taskq/store.py",
+        "tests/test_taskq.py",
+        "taskq/formatting.py",
+        "taskq/models.py",
+        "vendor/pkg036/user_category_3684.py",
+        "vendor/pkg023/record_discount_2373.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.999542907479252
+    },
+    {
+      "id": "tq-03",
+      "request": "Task titles should have leading and trailing whitespace stripped when a task is created.",
+      "retrieved": [
+        "taskq/formatting.py",
+        "tests/test_taskq.py",
+        "vendor/pkg038/connection_filter_3899.py",
+        "taskq/store.py",
+        "vendor/pkg038/ledger_email_3893.py",
+        "vendor/pkg000/amount_discount_39.py"
+      ],
+      "recall": false,
+      "context_reduction": 0.9995823544124375
+    },
+    {
+      "id": "tq-04",
+      "request": "Add rename(task_id, new_title) to TaskStore. It returns the task, and raises ValueError if the new title is empty or only whitespace.",
+      "retrieved": [
+        "taskq/store.py",
+        "tests/test_taskq.py",
+        "taskq/models.py",
+        "taskq/cli.py",
+        "taskq/formatting.py",
+        "vendor/pkg015/line_thread_1554.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.99951273104835
+    },
+    {
+      "id": "tq-05",
+      "request": "Make parse_due understand \"yesterday\" too.",
+      "retrieved": [
+        "tests/test_taskq.py",
+        "taskq/dates.py",
+        "taskq/cli.py",
+        "vendor/pkg061/string_store_6120.py",
+        "vendor/pkg055/date_image_5565.py",
+        "vendor/pkg023/slug_metadata_2358.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9993472809616802
+    },
+    {
+      "id": "tq-06",
+      "request": "parse_due should accept relative dates like \"in 3 days\" or \"in 1 day\".",
+      "retrieved": [
+        "taskq/dates.py",
+        "taskq/cli.py",
+        "vendor/pkg095/value_request_9590.py",
+        "vendor/pkg021/slug_day_2137.py",
+        "vendor/pkg007/slug_config_702.py",
+        "vendor/pkg056/request_user_5644.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9994805680812444
+    },
+    {
+      "id": "tq-07",
+      "request": "Add TaskStore.overdue(today=None) that returns unfinished tasks whose due date has passed, sorted by due date (earliest first).",
+      "retrieved": [
+        "tests/test_taskq.py",
+        "taskq/dates.py",
+        "taskq/store.py",
+        "taskq/formatting.py",
+        "taskq/cli.py",
+        "vendor/pkg085/due_summary_8525.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9995162311359468
+    },
+    {
+      "id": "tq-08",
+      "request": "Add a find(text) method to TaskStore that returns tasks whose title contains the text, ignoring case, ordered by id.",
+      "retrieved": [
+        "taskq/store.py",
+        "taskq/formatting.py",
+        "tests/test_taskq.py",
+        "vendor/pkg019/due_email_1920.py",
+        "vendor/pkg000/limit_slug_97.py",
+        "vendor/pkg096/limit_archive_9626.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9994126474624744
+    },
+    {
+      "id": "tq-09",
+      "request": "When formatting a task, show its tags at the very end of the line in square brackets, comma separated, like `[ ] #1 milk [home, errands]`. Tasks without tags should look exactly as they do now.",
+      "retrieved": [
+        "taskq/formatting.py",
+        "taskq/store.py",
+        "tests/test_taskq.py",
+        "taskq/__init__.py",
+        "vendor/pkg091/title_cache_9144.py",
+        "taskq/dates.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9996262474028405
+    },
+    {
+      "id": "tq-10",
+      "request": "Add a `delete <id>` command to the CLI. It deletes the task and outputs \"Deleted #<id>\".",
+      "retrieved": [
+        "taskq/cli.py",
+        "taskq/store.py",
+        "tests/test_taskq.py",
+        "taskq/formatting.py",
+        "vendor/pkg090/discount_document_9039.py",
+        "vendor/pkg037/delete_item_3794.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9994257018432408
+    },
+    {
+      "id": "tq-11",
+      "request": "Add a --pending flag to the CLI's list command so it shows only tasks that aren't done.",
+      "retrieved": [
+        "taskq/cli.py",
+        "taskq/store.py",
+        "tests/test_taskq.py",
+        "taskq/formatting.py",
+        "taskq/models.py",
+        "vendor/pkg036/api_handler_3644.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9994454726083145
+    },
+    {
+      "id": "tq-12",
+      "request": "Let the CLI's add command take a --tag option that can be repeated to attach several tags.",
+      "retrieved": [
+        "taskq/cli.py",
+        "taskq/store.py",
+        "vendor/pkg044/rate_task_4403.py",
+        "vendor/pkg081/event_ledger_8115.py",
+        "vendor/pkg035/line_detail_3502.py",
+        "vendor/pkg065/buffer_amount_6517.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9995375154524138
+    },
+    {
+      "id": "tq-13",
+      "request": "Add JSON persistence: TaskStore.save(path) writes all tasks to a JSON file, and a TaskStore.load(path) classmethod reads them back, keeping ids, done status, priority, tags and due dates. New tasks added after loading must get ids that don't collide.",
+      "retrieved": [
+        "taskq/store.py",
+        "taskq/models.py",
+        "taskq/formatting.py",
+        "tests/test_taskq.py",
+        "vendor/pkg043/ledger_file_4384.py",
+        "vendor/pkg092/due_resource_9244.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9994292019308375
+    },
+    {
+      "id": "tq-14",
+      "request": "Add a summary(tasks) function to the formatting module that returns text like \"3 tasks, 1 done\". Use \"1 task\" (singular) when there is exactly one task.",
+      "retrieved": [
+        "taskq/formatting.py",
+        "taskq/store.py",
+        "taskq/cli.py",
+        "taskq/dates.py",
+        "tests/test_taskq.py",
+        "taskq/models.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9995316504407651
+    },
+    {
+      "id": "tq-15",
+      "request": "Let TaskStore.list take sort=\"priority\" to order tasks by priority (most important first), breaking ties by id. The default order stays by id.",
+      "retrieved": [
+        "taskq/store.py",
+        "taskq/cli.py",
+        "tests/test_taskq.py",
+        "taskq/formatting.py",
+        "vendor/pkg047/group_task_4795.py",
+        "vendor/pkg055/status_channel_5583.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9994966495647972
+    },
+    {
+      "id": "tq-16",
+      "request": "Completing a task that is already done should raise a ValueError instead of silently succeeding.",
+      "retrieved": [
+        "taskq/models.py",
+        "tests/test_taskq.py",
+        "taskq/store.py",
+        "taskq/cli.py",
+        "vendor/pkg073/task_value_7389.py",
+        "taskq/formatting.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9995159473450606
+    },
+    {
+      "id": "tq-17",
+      "request": "Add an uncomplete(task_id) method to TaskStore that marks a task as not done, and an `undo <id>` CLI command that calls it and prints the task.",
+      "retrieved": [
+        "taskq/store.py",
+        "taskq/cli.py",
+        "tests/test_taskq.py",
+        "taskq/formatting.py",
+        "taskq/models.py",
+        "taskq/dates.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9995316504407651
+    },
+    {
+      "id": "tk-01",
+      "request": "slugify should turn accented letters into plain ASCII, so \"Caf\u00e9 D\u00e9j\u00e0 Vu\" becomes \"cafe-deja-vu\".",
+      "retrieved": [
+        "textkit/slug.py",
+        "tests/test_textkit.py",
+        "vendor/pkg034/priority_user_3432.py",
+        "vendor/pkg002/template_title_236.py",
+        "vendor/pkg024/count_transaction_2499.py",
+        "vendor/pkg036/rule_role_3641.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9995546354108467
+    },
+    {
+      "id": "tk-02",
+      "request": "Add an optional max_length argument to slugify. Cut the slug to at most that many characters, and never leave a hyphen at the end after cutting.",
+      "retrieved": [
+        "textkit/stats.py",
+        "tests/test_textkit.py",
+        "textkit/slug.py",
+        "vendor/pkg065/image_due_6528.py",
+        "vendor/pkg002/report_value_278.py",
+        "vendor/pkg047/money_search_4785.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9994711827727262
+    },
+    {
+      "id": "tk-03",
+      "request": "Let slugify take a sep argument for the separator, defaulting to \"-\". For example slugify(\"Hello World\", sep=\"_\") gives \"hello_world\".",
+      "retrieved": [
+        "textkit/slug.py",
+        "tests/test_textkit.py",
+        "vendor/pkg098/history_order_9861.py",
+        "vendor/pkg007/due_cart_791.py",
+        "vendor/pkg052/value_token_5212.py",
+        "vendor/pkg036/profile_thread_3681.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.999653699937051
+    },
+    {
+      "id": "tk-04",
+      "request": "to_snake mishandles acronyms: \"parseHTTPRequest\" should become \"parse_http_request\" and \"HTTPServer\" should become \"http_server\".",
+      "retrieved": [
+        "textkit/case.py",
+        "tests/test_textkit.py",
+        "vendor/pkg088/parse_config_8879.py",
+        "vendor/pkg090/audit_parse_9070.py",
+        "vendor/pkg086/result_parse_8605.py",
+        "vendor/pkg061/connection_job_6101.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9996325056162585
+    },
+    {
+      "id": "tk-05",
+      "request": "to_camel should also accept kebab-case and space-separated words, e.g. \"parse-http request\" -> \"parseHttpRequest\".",
+      "retrieved": [
+        "textkit/case.py",
+        "tests/test_textkit.py",
+        "vendor/pkg088/parse_config_8879.py",
+        "textkit/stats.py",
+        "vendor/pkg095/value_request_9590.py",
+        "vendor/pkg064/parse_document_6460.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.999525682454764
+    },
+    {
+      "id": "tk-06",
+      "request": "Add a to_pascal function to the case module: \"parse_http_request\" -> \"ParseHttpRequest\".",
+      "retrieved": [
+        "textkit/case.py",
+        "tests/test_textkit.py",
+        "vendor/pkg088/parse_config_8879.py",
+        "vendor/pkg091/address_parse_9171.py",
+        "vendor/pkg051/buffer_parse_5167.py",
+        "vendor/pkg095/value_request_9590.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9994762921179172
+    },
+    {
+      "id": "tk-07",
+      "request": "Add to_kebab(name) that converts camelCase or snake_case to kebab-case: \"parseHttpRequest\" -> \"parse-http-request\".",
+      "retrieved": [
+        "textkit/case.py",
+        "tests/test_textkit.py",
+        "vendor/pkg070/buffer_event_7052.py",
+        "vendor/pkg031/parse_image_3173.py",
+        "vendor/pkg072/list_channel_7203.py",
+        "vendor/pkg088/parse_config_8879.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9995306025649481
+    },
+    {
+      "id": "tk-08",
+      "request": "word_count should treat hyphenated words like \"well-known\" as one word, and count numbers and words with digits (\"2026\", \"3D\") as words.",
+      "retrieved": [
+        "textkit/stats.py",
+        "tests/test_textkit.py",
+        "vendor/pkg030/audit_value_3008.py",
+        "vendor/pkg029/key_event_2971.py",
+        "vendor/pkg038/history_word_3875.py",
+        "vendor/pkg005/index_token_502.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.999444595254232
+    },
+    {
+      "id": "tk-09",
+      "request": "Give top_words a skip_stopwords flag (default False). When it's on, ignore the words the, a, an, and, or, of, to and in.",
+      "retrieved": [
+        "textkit/stats.py",
+        "tests/test_textkit.py",
+        "vendor/pkg049/queue_summary_4906.py",
+        "vendor/pkg028/queue_import_2879.py",
+        "vendor/pkg066/invoice_total_6620.py",
+        "vendor/pkg033/count_balance_3367.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9996142444380757
+    },
+    {
+      "id": "tk-10",
+      "request": "Add sentence_count(text) to the stats module. Sentences end with . ! or ?; text without an ending mark still counts as one sentence, and empty text has zero.",
+      "retrieved": [
+        "textkit/stats.py",
+        "tests/test_textkit.py",
+        "vendor/pkg025/profile_money_2565.py",
+        "vendor/pkg061/tag_group_6184.py",
+        "vendor/pkg001/record_count_129.py",
+        "vendor/pkg069/message_count_6902.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9996371418739318
+    },
+    {
+      "id": "tk-11",
+      "request": "reading_time_minutes should return 0 for empty or whitespace-only text instead of 1. Non-empty text still takes at least 1 minute.",
+      "retrieved": [
+        "tests/test_textkit.py",
+        "textkit/stats.py",
+        "textkit/clean.py",
+        "vendor/pkg001/page_currency_171.py",
+        "textkit/slug.py",
+        "vendor/pkg041/message_archive_4176.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9996690279726241
+    },
+    {
+      "id": "tk-12",
+      "request": "wrap() leaves words longer than the width sticking out. Split such words across lines so no line is longer than width.",
+      "retrieved": [
+        "textkit/wrap.py",
+        "tests/test_textkit.py",
+        "textkit/stats.py",
+        "vendor/pkg022/handler_config_2217.py",
+        "vendor/pkg095/delete_session_9538.py",
+        "vendor/pkg037/profile_channel_3779.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9995514184157264
+    },
+    {
+      "id": "tk-13",
+      "request": "Add an ellipsis argument to truncate (default \"...\") so callers can use a different marker such as the single character \"\u2026\". The result must still fit within limit.",
+      "retrieved": [
+        "textkit/wrap.py",
+        "tests/test_textkit.py",
+        "vendor/pkg097/number_thread_9742.py",
+        "vendor/pkg066/schedule_label_6665.py",
+        "vendor/pkg087/session_tag_8796.py",
+        "vendor/pkg073/token_buffer_7336.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9994480014843594
+    },
+    {
+      "id": "tk-14",
+      "request": "Add a whole_words option to truncate. When true, don't cut a word in half: back off to the last space that fits, then add the ellipsis.",
+      "retrieved": [
+        "tests/test_textkit.py",
+        "textkit/stats.py",
+        "vendor/pkg007/thread_item_736.py",
+        "vendor/pkg040/number_image_4050.py",
+        "vendor/pkg083/string_title_8361.py",
+        "vendor/pkg061/word_amount_6183.py"
+      ],
+      "recall": false,
+      "context_reduction": 0.9994455414292674
+    },
+    {
+      "id": "tk-15",
+      "request": "strip_html should also decode HTML entities such as &amp;, &lt;, &gt;, &quot; and &#39;.",
+      "retrieved": [
+        "textkit/clean.py",
+        "tests/test_textkit.py",
+        "textkit/slug.py",
+        "vendor/pkg013/rule_slug_1342.py",
+        "vendor/pkg037/number_date_3726.py",
+        "vendor/pkg018/cart_string_1834.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.999555203115868
+    },
+    {
+      "id": "tk-16",
+      "request": "Add normalize_quotes(text) to the clean module. It replaces curly single quotes with ' and curly double quotes with \".",
+      "retrieved": [
+        "textkit/clean.py",
+        "tests/test_textkit.py",
+        "vendor/pkg055/priority_order_5510.py",
+        "vendor/pkg057/record_event_5714.py",
+        "vendor/pkg049/group_batch_4905.py",
+        "vendor/pkg007/device_word_764.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9994683442476201
+    },
+    {
+      "id": "tk-17",
+      "request": "strip_html should remove <script> and <style> blocks completely, including the code inside them, not just the tags.",
+      "retrieved": [
+        "textkit/clean.py",
+        "tests/test_textkit.py",
+        "vendor/pkg020/note_cart_2029.py",
+        "vendor/pkg040/archive_value_4061.py",
+        "vendor/pkg002/template_item_267.py",
+        "vendor/pkg078/rate_string_7893.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9995921985597512
+    },
+    {
+      "id": "lg-01",
+      "request": "Let Money be multiplied by an integer, on either side: Money(250) * 3 and 3 * Money(250) both give Money(750).",
+      "retrieved": [
+        "ledger/money.py",
+        "vendor/pkg025/import_channel_2594.py",
+        "vendor/pkg066/name_role_6647.py",
+        "vendor/pkg064/payment_money_6497.py",
+        "vendor/pkg050/email_search_5010.py",
+        "vendor/pkg088/task_transaction_8842.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9994236683114636
+    },
+    {
+      "id": "lg-02",
+      "request": "Make Money amounts comparable with <, <=, > and >= when they share a currency. Comparing different currencies should raise CurrencyMismatch.",
+      "retrieved": [
+        "ledger/money.py",
+        "tests/test_ledger.py",
+        "ledger/__init__.py",
+        "ledger/account.py",
+        "ledger/errors.py",
+        "ledger/fx.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9996610314445131
+    },
+    {
+      "id": "lg-03",
+      "request": "Money.from_str should accept a leading \"$\" and thousands separators, e.g. \"$1,234.50\".",
+      "retrieved": [
+        "tests/test_ledger.py",
+        "ledger/money.py",
+        "vendor/pkg023/config_history_2330.py",
+        "vendor/pkg025/value_request_2573.py",
+        "vendor/pkg074/slug_store_7461.py",
+        "vendor/pkg085/image_transaction_8517.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9994297230107522
+    },
+    {
+      "id": "lg-04",
+      "request": "Money.from_str silently drops digits after the second decimal place. It should raise ValueError for amounts like \"1.234\" instead.",
+      "retrieved": [
+        "ledger/account.py",
+        "tests/test_ledger.py",
+        "ledger/money.py",
+        "vendor/pkg073/day_currency_7385.py",
+        "vendor/pkg062/priority_string_6218.py",
+        "vendor/pkg057/ledger_session_5738.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9994301960341341
+    },
+    {
+      "id": "lg-05",
+      "request": "Money.from_str crashes on amounts with nothing before the decimal point. Make \".5\" and \"-.75\" work.",
+      "retrieved": [
+        "ledger/__init__.py",
+        "tests/test_ledger.py",
+        "ledger/money.py",
+        "vendor/pkg078/rule_result_7841.py",
+        "vendor/pkg042/token_account_4232.py",
+        "vendor/pkg033/thread_image_3381.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9995136373587056
+    },
+    {
+      "id": "lg-06",
+      "request": "Format Money with thousands separators, e.g. Money(123456789) prints as \"1,234,567.89 USD\".",
+      "retrieved": [
+        "tests/test_ledger.py",
+        "ledger/fx.py",
+        "ledger/money.py",
+        "ledger/account.py",
+        "vendor/pkg093/order_buffer_9345.py",
+        "vendor/pkg002/token_tag_201.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9995571555098426
+    },
+    {
+      "id": "lg-07",
+      "request": "Add Account.transfer(to_account, amount) that moves money between accounts. It must raise InsufficientFunds when the balance is too low and CurrencyMismatch when the accounts use different currencies, without changing either account in those cases.",
+      "retrieved": [
+        "ledger/account.py",
+        "tests/test_ledger.py",
+        "ledger/errors.py",
+        "ledger/money.py",
+        "vendor/pkg000/amount_discount_39.py",
+        "ledger/report.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9995851584940525
+    },
+    {
+      "id": "lg-08",
+      "request": "Depositing or withdrawing money in a different currency than the account's should raise CurrencyMismatch right away and leave the account unchanged.",
+      "retrieved": [
+        "ledger/money.py",
+        "ledger/account.py",
+        "tests/test_ledger.py",
+        "ledger/errors.py",
+        "vendor/pkg004/total_audit_448.py",
+        "vendor/pkg064/thread_import_6455.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9995090017295627
+    },
+    {
+      "id": "lg-09",
+      "request": "Add an optional overdraft limit to Account, passed as Account(owner, overdraft=Money(...)). Withdrawals may take the balance negative down to minus that limit. Without it, behavior is unchanged.",
+      "retrieved": [
+        "vendor/pkg076/account_setting_7665.py",
+        "vendor/pkg012/ledger_handler_1260.py",
+        "vendor/pkg015/buffer_parse_1528.py",
+        "ledger/account.py",
+        "vendor/pkg048/batch_discount_4836.py",
+        "vendor/pkg048/product_balance_4843.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9993420244757435
+    },
+    {
+      "id": "lg-10",
+      "request": "Let deposit and withdraw take an optional memo string. The statement should show the memo after the amount, separated by two spaces, e.g. \"deposit  10.00 USD  paycheck\". Lines without a memo stay the same, and the CSV export is unchanged.",
+      "retrieved": [
+        "tests/test_ledger.py",
+        "ledger/report.py",
+        "ledger/account.py",
+        "ledger/fx.py",
+        "vendor/pkg057/user_total_5733.py",
+        "vendor/pkg071/user_resource_7118.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9995634940231604
+    },
+    {
+      "id": "lg-11",
+      "request": "Add a running balance column, balance_cents, as the last column of the CSV export.",
+      "retrieved": [
+        "ledger/report.py",
+        "tests/test_ledger.py",
+        "vendor/pkg007/ledger_email_740.py",
+        "ledger/account.py",
+        "ledger/money.py",
+        "vendor/pkg041/count_batch_4173.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9994817555827639
+    },
+    {
+      "id": "lg-12",
+      "request": "Add from_csv(text, owner) to the report module. It rebuilds an Account from the text that to_csv produces.",
+      "retrieved": [
+        "ledger/report.py",
+        "tests/test_ledger.py",
+        "vendor/pkg080/log_ledger_8050.py",
+        "vendor/pkg024/owner_account_2491.py",
+        "vendor/pkg082/archive_page_8237.py",
+        "vendor/pkg014/connection_address_1413.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9994998250759534
+    },
+    {
+      "id": "lg-13",
+      "request": "convert() raises a bare KeyError for currencies it doesn't know. Add an UnknownCurrency error (a LedgerError subclass) in the errors module and raise it instead.",
+      "retrieved": [
+        "ledger/errors.py",
+        "tests/test_ledger.py",
+        "ledger/account.py",
+        "ledger/money.py",
+        "vendor/pkg043/currency_report_4327.py",
+        "ledger/fx.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9996154319904956
+    },
+    {
+      "id": "lg-14",
+      "request": "Add a total(amounts, currency=\"USD\") function to the money module that sums a list of Money. An empty list gives zero in that currency; mixed currencies raise CurrencyMismatch.",
+      "retrieved": [
+        "ledger/money.py",
+        "tests/test_ledger.py",
+        "ledger/account.py",
+        "ledger/fx.py",
+        "vendor/pkg081/total_string_8166.py",
+        "vendor/pkg029/payment_message_2946.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9995392752260058
+    },
+    {
+      "id": "lg-15",
+      "request": "Add a line right under the statement title that shows the account currency, like \"Currency: USD\".",
+      "retrieved": [
+        "tests/test_ledger.py",
+        "ledger/fx.py",
+        "ledger/report.py",
+        "ledger/money.py",
+        "ledger/account.py",
+        "vendor/pkg081/currency_email_8190.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9995487356936443
+    },
+    {
+      "id": "lg-16",
+      "request": "Give convert() an optional rates argument that overrides the built-in RATES table for that call.",
+      "retrieved": [
+        "ledger/fx.py",
+        "tests/test_ledger.py",
+        "vendor/pkg092/due_resource_9244.py",
+        "vendor/pkg055/customer_note_5537.py",
+        "vendor/pkg004/node_customer_483.py",
+        "ledger/account.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.9995358694576559
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "diffsmith"
+version = "0.1.0"
+description = "AI code-editing assistant: plain-English request in, tested Git commit out."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Jeetesh Vinjam" }]
+dependencies = [
+    "anthropic>=0.40",
+    "faiss-cpu>=1.8",
+    "numpy>=1.24",
+    "fastapi>=0.110",
+    "uvicorn>=0.29",
+]
+
+[project.optional-dependencies]
+local-embeddings = ["sentence-transformers>=2.7"]
+dev = ["pytest>=8", "httpx>=0.27"]
+
+[project.scripts]
+diffsmith = "diffsmith.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
