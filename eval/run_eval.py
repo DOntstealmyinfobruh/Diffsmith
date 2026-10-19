@@ -139,12 +139,21 @@ def make_llm(args, task):
     return None  # Diffsmith builds the Anthropic client from Config
 
 
-def evaluate(args) -> dict:
-    tasks = [t for t in TASKS if not args.only or t["id"] in args.only]
+def build_config(args) -> Config:
     cfg = Config()
     cfg.embedder = args.embedder
+    if args.provider:
+        cfg.provider = args.provider
+    if args.base_url:
+        cfg.base_url = args.base_url
     if args.model:
         cfg.model = args.model
+    return cfg
+
+
+def evaluate(args) -> dict:
+    tasks = [t for t in TASKS if not args.only or t["id"] in args.only]
+    cfg = build_config(args)
     if args.attempts:
         cfg.max_attempts = args.attempts
     if args.top_k:
@@ -234,7 +243,8 @@ def summarize(rows: list[dict], args) -> dict:
     n = len(rows)
     s = {
         "mode": "retrieval-only" if args.retrieval_only else ("oracle" if args.oracle else "llm"),
-        "model": None if (args.retrieval_only or args.oracle) else (args.model or Config().model),
+        "provider": None if (args.retrieval_only or args.oracle) else build_config(args).provider,
+        "model": None if (args.retrieval_only or args.oracle) else build_config(args).resolved_model,
         "embedder": args.embedder,
         "padding_files": args.pad,
         "tasks": n,
@@ -263,7 +273,10 @@ def main() -> int:
     p.add_argument("--only", nargs="*", help="task ids to run (default: all 50)")
     p.add_argument("--pad", type=int, default=0, help="add this many filler files to each repo")
     p.add_argument("--embedder", default="auto", choices=["auto", "local", "hashing"])
-    p.add_argument("--model", help="Claude model id (default: Diffsmith's default)")
+    p.add_argument("--provider", help="anthropic (default), ollama, groq, openrouter, gemini, "
+                   "github, openai, or openai-compatible")
+    p.add_argument("--model", help="model name (default for Claude: claude-sonnet-5-5)")
+    p.add_argument("--base-url", help="server URL for --provider openai-compatible")
     p.add_argument("--attempts", type=int, help="max attempts per task")
     p.add_argument("--top-k", type=int, help="files sent to the model")
     p.add_argument("--oracle", action="store_true", help="replay reference solutions (no API)")
@@ -271,6 +284,12 @@ def main() -> int:
     p.add_argument("--out", default=str(HERE / "results" / "latest.json"))
     p.add_argument("--keep", action="store_true", help="keep the temporary repos")
     args = p.parse_args()
+
+    if not (args.oracle or args.retrieval_only):
+        problems = build_config(args).problems()
+        if problems:
+            print("\n".join(problems), file=sys.stderr)
+            return 2
 
     report = evaluate(args)
     out = Path(args.out)

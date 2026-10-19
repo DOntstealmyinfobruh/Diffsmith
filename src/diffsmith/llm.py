@@ -2,6 +2,11 @@
 
 from __future__ import annotations
 
+import json
+import re
+import time
+import urllib.error
+import urllib.request
 from dataclasses import dataclass, field
 from typing import Callable, Protocol
 
@@ -39,6 +44,91 @@ class AnthropicClient:
         self.usage.input_tokens += getattr(resp.usage, "input_tokens", 0)
         self.usage.output_tokens += getattr(resp.usage, "output_tokens", 0)
         return "".join(block.text for block in resp.content if block.type == "text")
+
+
+class LLMError(RuntimeError):
+    """A model request failed (bad key, unknown model, server down, ...)."""
+
+
+_THINK = re.compile(r"<think>.*?</think>", re.DOTALL)
+
+
+class OpenAICompatibleClient:
+    """Any server speaking the OpenAI chat-completions format: Ollama, Groq,
+    OpenRouter, Gemini, GitHub Models, OpenAI, vLLM, LM Studio, ...
+
+    Uses only the standard library. Retries rate-limit (429) and transient
+    server errors with backoff, since free tiers hit their limits often.
+    """
+
+    def __init__(self, base_url: str, model: str, api_key: str | None = None,
+                 max_tokens: int = 8000, timeout: int = 600, max_retries: int = 5,
+                 sleep: Callable[[float], None] = time.sleep):
+        self.url = base_url.rstrip("/") + "/chat/completions"
+        self.model = model
+        self.api_key = api_key
+        self.max_tokens = max_tokens
+        self.timeout = timeout
+        self.max_retries = max_retries
+        self._sleep = sleep
+        self.usage = Usage()
+
+    def _post(self, payload: dict) -> dict:
+        headers = {"Content-Type": "application/json"}
+        if self.api_key:
+            headers["Authorization"] = f"Bearer {self.api_key}"
+        body = json.dumps(payload).encode()
+        for attempt in range(self.max_retries + 1):
+            req = urllib.request.Request(self.url, data=body, headers=headers, method="POST")
+            try:
+                with urllib.request.urlopen(req, timeout=self.timeout) as resp:
+                    return json.loads(resp.read().decode())
+            except urllib.error.HTTPError as exc:
+                detail = exc.read().decode(errors="replace")[:500]
+                retryable = exc.code == 429 or exc.code >= 500
+                if retryable and attempt < self.max_retries:
+                    wait = exc.headers.get("Retry-After") if exc.headers else None
+                    try:
+                        delay = float(wait) if wait else 2 ** attempt * 2
+                    except ValueError:
+                        delay = 2 ** attempt * 2
+                    self._sleep(min(delay, 60))
+                    continue
+                raise LLMError(f"HTTP {exc.code} from {self.url}: {detail}") from exc
+            except (urllib.error.URLError, TimeoutError, ConnectionError) as exc:
+                if attempt < min(self.max_retries, 2):  # a down server rarely recovers fast
+                    self._sleep(2 ** attempt)
+                    continue
+                raise LLMError(f"Could not reach {self.url}: {exc}") from exc
+        raise LLMError("unreachable")  # pragma: no cover
+
+    def complete(self, system: str, messages: list[dict]) -> str:
+        data = self._post({
+            "model": self.model,
+            "max_tokens": self.max_tokens,
+            "messages": [{"role": "system", "content": system}, *messages],
+        })
+        self.usage.calls += 1
+        usage = data.get("usage") or {}
+        self.usage.input_tokens += usage.get("prompt_tokens", 0) or 0
+        self.usage.output_tokens += usage.get("completion_tokens", 0) or 0
+        try:
+            content = data["choices"][0]["message"]["content"] or ""
+        except (KeyError, IndexError, TypeError) as exc:
+            raise LLMError(f"Unexpected response: {str(data)[:300]}") from exc
+        # Reasoning models (DeepSeek-R1, Qwen3, ...) may include their thinking.
+        return _THINK.sub("", content)
+
+
+def make_llm(config) -> LLMClient:
+    """Build the client the config asks for. Claude is the default."""
+    problems = config.problems()
+    if problems:
+        raise LLMError(" ".join(problems))
+    if config.provider == "anthropic":
+        return AnthropicClient(config.resolved_model, config.max_tokens)
+    return OpenAICompatibleClient(config.resolved_base_url, config.resolved_model,
+                                  config.resolved_api_key, config.max_tokens)
 
 
 @dataclass

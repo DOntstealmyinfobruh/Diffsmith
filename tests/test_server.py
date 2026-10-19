@@ -13,7 +13,7 @@ def test_health():
 
 def test_edit_endpoint(repo, monkeypatch):
     monkeypatch.setenv("DIFFSMITH_EMBEDDER", "hashing")
-    monkeypatch.setattr("diffsmith.agent.AnthropicClient", lambda *a, **k: ScriptedClient([GOOD]))
+    monkeypatch.setattr("diffsmith.agent.make_llm", lambda cfg: ScriptedClient([GOOD]))
     resp = client.post("/edit", json={"repo": str(repo), "request": "validate discount percent"})
     body = resp.json()
     assert resp.status_code == 200, body

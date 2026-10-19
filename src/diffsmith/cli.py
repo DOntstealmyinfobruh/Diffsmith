@@ -5,14 +5,17 @@ from __future__ import annotations
 import argparse
 import json
 import logging
-import os
 import sys
 
-from .config import Config
+from .config import PROVIDERS, Config
 
 
 def _config_from_args(args: argparse.Namespace) -> Config:
     cfg = Config()
+    if getattr(args, "provider", None):
+        cfg.provider = args.provider
+    if getattr(args, "base_url", None):
+        cfg.base_url = args.base_url
     if getattr(args, "model", None):
         cfg.model = args.model
     if getattr(args, "embedder", None):
@@ -32,17 +35,30 @@ def cmd_edit(args: argparse.Namespace) -> int:
     from .agent import Diffsmith
     from .gitops import GitError
 
-    if not os.environ.get("ANTHROPIC_API_KEY"):
-        print("ANTHROPIC_API_KEY is not set. Get a key at https://console.anthropic.com "
-              "and run: export ANTHROPIC_API_KEY=sk-ant-...", file=sys.stderr)
+    from .llm import LLMError
+
+    cfg = _config_from_args(args)
+    problems = cfg.problems()
+    if problems:
+        for p in problems:
+            print(p, file=sys.stderr)
+        if cfg.provider == "anthropic" and not cfg.resolved_api_key:
+            print("Get a Claude API key at https://console.anthropic.com, or use a free "
+                  "provider: --provider ollama --model qwen2.5-coder:7b", file=sys.stderr)
         return 2
     try:
-        tool = Diffsmith(args.repo, _config_from_args(args))
+        tool = Diffsmith(args.repo, cfg)
         result = tool.run(args.request, dry_run=args.dry_run, allow_dirty=args.allow_dirty)
     except GitError as exc:
         print(f"Error: {exc}", file=sys.stderr)
         return 2
-    except Exception as exc:  # API failures: show the reason, not a traceback
+    except LLMError as exc:
+        print(f"Model error ({cfg.provider}): {exc}", file=sys.stderr)
+        if cfg.provider == "ollama" and "Could not reach" in str(exc):
+            print("Is Ollama running? Open the Ollama app or run `ollama serve`, and pull the "
+                  f"model first: ollama pull {cfg.resolved_model}", file=sys.stderr)
+        return 2
+    except Exception as exc:  # Claude SDK failures: show the reason, not a traceback
         if type(exc).__module__.startswith("anthropic"):
             print(f"Claude API error: {exc}", file=sys.stderr)
             return 2
@@ -104,7 +120,10 @@ def build_parser() -> argparse.ArgumentParser:
     e = sub.add_parser("edit", help="make a change from a plain-English request")
     e.add_argument("request")
     common(e)
-    e.add_argument("--model")
+    e.add_argument("--provider", choices=PROVIDERS,
+                   help="who writes the edits (default: anthropic, i.e. Claude)")
+    e.add_argument("--model", help="model name (default for Claude: claude-sonnet-5-5)")
+    e.add_argument("--base-url", help="server URL for --provider openai-compatible")
     e.add_argument("--test-command", help="override the detected test command")
     e.add_argument("--no-tests", action="store_true", help="skip the test gate (not recommended)")
     e.add_argument("--attempts", type=int, help="max tries when tests fail (default 2)")

@@ -12,7 +12,7 @@ from .edits import EditError, apply_edits, parse_commit_message, parse_edits, pa
 from .embeddings import make_embedder
 from .gitops import GitRepo
 from .index import CodeIndex
-from .llm import (SYSTEM_PROMPT, AnthropicClient, LLMClient, build_retry_prompt,
+from .llm import (SYSTEM_PROMPT, LLMClient, build_retry_prompt, make_llm,
                   build_user_prompt)
 from .testgate import detect_test_command, run_tests
 
@@ -66,7 +66,7 @@ class Diffsmith:
                  llm: LLMClient | None = None):
         self.config = config or Config()
         self.repo = GitRepo(repo_path)
-        self.llm = llm or AnthropicClient(self.config.model, self.config.max_tokens)
+        self.llm = llm or make_llm(self.config)
         self._index: CodeIndex | None = None
         self._embedder = None
 

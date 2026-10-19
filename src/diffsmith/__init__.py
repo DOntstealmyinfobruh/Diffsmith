@@ -4,4 +4,4 @@ from .agent import Diffsmith, EditResult
 from .config import Config
 
 __all__ = ["Diffsmith", "EditResult", "Config"]
-__version__ = "0.1.0"
+__version__ = "0.2.0"

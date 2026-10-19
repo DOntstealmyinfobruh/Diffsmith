@@ -22,6 +22,7 @@ from . import __version__
 from .agent import Diffsmith
 from .config import Config
 from .gitops import GitError
+from .llm import LLMError
 
 app = FastAPI(title="Diffsmith", version=__version__)
 _repo_locks: dict[str, threading.Lock] = {}
@@ -68,7 +69,7 @@ def edit(body: EditRequest) -> dict:
     try:
         try:
             tool = Diffsmith(repo, cfg)
-        except GitError as exc:
+        except (GitError, LLMError) as exc:
             raise HTTPException(400, str(exc)) from exc
         result = tool.run(body.request, dry_run=body.dry_run)
         return result.to_dict()
