@@ -5,6 +5,12 @@ Examples
     # Full run with Claude (needs ANTHROPIC_API_KEY):
     python eval/run_eval.py
 
+    # Free tiers with a small daily quota: save after every task, skip tasks
+    # already finished, and stop when the quota runs out. Re-run the same
+    # command the next day to continue.
+    python eval/run_eval.py --provider gemini --model gemini-3.8-flash \
+        --resume --out eval/results/full-gemini.json
+
     # Same, inside repos padded with 10,000 extra files to test scale:
     python eval/run_eval.py --pad 10000
 
@@ -151,8 +157,42 @@ def build_config(args) -> Config:
     return cfg
 
 
+def is_quota_error(text: str) -> bool:
+    return "HTTP 429" in text or "quota" in text.lower()
+
+
+def load_previous(path: Path) -> tuple[list[dict], float]:
+    """Finished rows from an earlier --resume run (API failures are retried)."""
+    if not path.exists():
+        return [], 0.0
+    report = json.loads(path.read_text())
+    rows = [r for r in report.get("tasks", []) if not r.get("api_error")]
+    return rows, report.get("summary", {}).get("wall_seconds", 0.0)
+
+
+def save_report(path: Path, rows: list[dict], args, wall_seconds: float) -> dict:
+    order = {t["id"]: i for i, t in enumerate(TASKS)}
+    rows = sorted(rows, key=lambda r: order.get(r["id"], 0))
+    summary = summarize(rows, args)
+    summary["wall_seconds"] = round(wall_seconds, 1)
+    if args.resume:
+        wanted = [t for t in TASKS if not args.only or t["id"] in args.only]
+        done = {r["id"] for r in rows if not r.get("api_error")}
+        summary["tasks_remaining"] = sum(t["id"] not in done for t in wanted)
+    report = {"summary": summary, "tasks": rows}
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(report, indent=2))
+    return report
+
+
 def evaluate(args) -> dict:
     tasks = [t for t in TASKS if not args.only or t["id"] in args.only]
+    out = Path(args.out)
+    previous, previous_seconds = load_previous(out) if args.resume else ([], 0.0)
+    done = {r["id"] for r in previous}
+    if previous:
+        print(f"Resuming: {len(done)} task(s) already finished in {out}")
+    tasks = [t for t in tasks if t["id"] not in done]
     cfg = build_config(args)
     if args.attempts:
         cfg.max_attempts = args.attempts
@@ -173,7 +213,7 @@ def evaluate(args) -> dict:
         print(f"Indexed {fixture}: {idx.stats['files']} files, {idx.stats['chunks']} chunks "
               f"in {time.time() - start:.1f}s ({embedder.name})")
 
-    rows = []
+    rows = list(previous)
     for n, task in enumerate(tasks, 1):
         repo = clone_for_task(bases[task["fixture"]], work / task["id"])
         row = {"id": task["id"], "request": task["request"]}
@@ -202,9 +242,15 @@ def evaluate(args) -> dict:
             result = tool.run(task["request"])
         except Exception as exc:  # API errors etc. count as failures, not crashes
             row.update(completed=False, committed=False, error=f"{type(exc).__name__}: {exc}",
-                       attempts=[], blocked=0, leaked=0, recall=False, context_reduction=0.0)
+                       attempts=[], blocked=0, leaked=0, recall=False, context_reduction=0.0,
+                       api_error=True)
             rows.append(row)
             print(f"[{n:2}/{len(tasks)}] {task['id']}: ERROR {row['error'][:120]}")
+            if args.resume and is_quota_error(row["error"]):
+                print("API quota reached; stopping. Re-run the same command later to continue.")
+                break
+            if args.resume:
+                save_report(out, rows, args, previous_seconds + time.time() - t0)
             continue
 
         hidden_ok, hidden_out = (False, "")
@@ -231,12 +277,12 @@ def evaluate(args) -> dict:
         status = "PASS" if row["completed"] else "FAIL"
         print(f"[{n:2}/{len(tasks)}] {task['id']}: {status} attempts={row['attempts']} "
               f"reduction={row['context_reduction']:.1%}")
+        if args.resume:
+            save_report(out, rows, args, previous_seconds + time.time() - t0)
 
-    summary = summarize(rows, args)
-    summary["wall_seconds"] = round(time.time() - t0, 1)
     if not args.keep:
         shutil.rmtree(work, ignore_errors=True)
-    return {"summary": summary, "tasks": rows}
+    return save_report(out, rows, args, previous_seconds + time.time() - t0)
 
 
 def summarize(rows: list[dict], args) -> dict:
@@ -283,6 +329,9 @@ def main() -> int:
     p.add_argument("--retrieval-only", action="store_true", help="measure search only (no API)")
     p.add_argument("--out", default=str(HERE / "results" / "latest.json"))
     p.add_argument("--keep", action="store_true", help="keep the temporary repos")
+    p.add_argument("--resume", action="store_true",
+                   help="save after every task, skip tasks already finished in --out, and "
+                        "stop at the first API quota error (for free tiers with daily limits)")
     args = p.parse_args()
 
     if not (args.oracle or args.retrieval_only):
@@ -293,8 +342,6 @@ def main() -> int:
 
     report = evaluate(args)
     out = Path(args.out)
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=2))
     print("\n" + json.dumps(report["summary"], indent=2))
     print(f"\nFull results: {out}")
     return 0
