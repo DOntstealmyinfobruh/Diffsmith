@@ -1,0 +1,419 @@
+{
+  "summary": {
+    "mode": "llm",
+    "provider": "gemini",
+    "model": "gemini-3.8-flash",
+    "embedder": "hashing",
+    "padding_files": 0,
+    "tasks": 15,
+    "retrieval_recall": 0.9333,
+    "avg_context_reduction": 0.0332,
+    "completed": 13,
+    "completion_rate": 0.8667,
+    "broken_edits_blocked": 3,
+    "broken_edits_committed": 0,
+    "block_rate": 1.0,
+    "input_tokens": 41237,
+    "output_tokens": 9791,
+    "wall_seconds": 2247.5,
+    "tasks_remaining": 36
+  },
+  "tasks": [
+    {
+      "id": "tq-01",
+      "request": "Add a clear_done() method to TaskStore that removes all completed tasks and returns how many it removed.",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/store.py",
+        "tests/test_taskq.py",
+        "taskq/cli.py",
+        "taskq/formatting.py",
+        "taskq/dates.py",
+        "taskq/models.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.00821314102564108,
+      "input_tokens": 2036,
+      "output_tokens": 451,
+      "seconds": 149.9,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-02",
+      "request": "Support a new \"urgent\" priority above \"high\". Urgent tasks should be marked with \"(!!)\" when formatted, the way high-priority tasks get \"(!)\".",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "tests/test_taskq.py",
+        "taskq/store.py",
+        "taskq/formatting.py",
+        "taskq/models.py",
+        "taskq/cli.py",
+        "taskq/__init__.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.0983573717948718,
+      "input_tokens": 1909,
+      "output_tokens": 389,
+      "seconds": 83.5,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-03",
+      "request": "Task titles should have leading and trailing whitespace stripped when a task is created.",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/formatting.py",
+        "tests/test_taskq.py",
+        "taskq/store.py",
+        "taskq/dates.py",
+        "taskq/cli.py",
+        "taskq/models.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.00821314102564108,
+      "input_tokens": 2029,
+      "output_tokens": 337,
+      "seconds": 150.8,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-04",
+      "request": "Add rename(task_id, new_title) to TaskStore. It returns the task, and raises ValueError if the new title is empty or only whitespace.",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "tests/test_taskq.py",
+        "taskq/store.py",
+        "taskq/models.py",
+        "taskq/cli.py",
+        "taskq/formatting.py",
+        "taskq/dates.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.00821314102564108,
+      "input_tokens": 2047,
+      "output_tokens": 383,
+      "seconds": 83.1,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-05",
+      "request": "Make parse_due understand \"yesterday\" too.",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/dates.py",
+        "taskq/cli.py",
+        "tests/test_taskq.py",
+        "taskq/formatting.py",
+        "taskq/store.py",
+        "taskq/models.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.00821314102564108,
+      "input_tokens": 2025,
+      "output_tokens": 464,
+      "seconds": 117.3,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-06",
+      "request": "parse_due should accept relative dates like \"in 3 days\" or \"in 1 day\".",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/dates.py",
+        "taskq/cli.py",
+        "tests/test_taskq.py",
+        "taskq/store.py",
+        "taskq/models.py",
+        "taskq/formatting.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.00821314102564108,
+      "input_tokens": 2035,
+      "output_tokens": 617,
+      "seconds": 38.6,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-07",
+      "request": "Add TaskStore.overdue(today=None) that returns unfinished tasks whose due date has passed, sorted by due date (earliest first).",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "tests_failed",
+        "committed"
+      ],
+      "blocked": 1,
+      "leaked": 0,
+      "retrieved": [
+        "tests/test_taskq.py",
+        "taskq/dates.py",
+        "taskq/store.py",
+        "taskq/cli.py",
+        "taskq/formatting.py",
+        "taskq/models.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.00821314102564108,
+      "input_tokens": 4974,
+      "output_tokens": 1420,
+      "seconds": 121.8,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-08",
+      "request": "Add a find(text) method to TaskStore that returns tasks whose title contains the text, ignoring case, ordered by id.",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/store.py",
+        "tests/test_taskq.py",
+        "taskq/cli.py",
+        "taskq/formatting.py",
+        "taskq/dates.py",
+        "taskq/models.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.00821314102564108,
+      "input_tokens": 2040,
+      "output_tokens": 312,
+      "seconds": 46.2,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-09",
+      "request": "When formatting a task, show its tags at the very end of the line in square brackets, comma separated, like `[ ] #1 milk [home, errands]`. Tasks without tags should look exactly as they do now.",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/formatting.py",
+        "taskq/store.py",
+        "tests/test_taskq.py",
+        "taskq/__init__.py",
+        "taskq/dates.py",
+        "taskq/models.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.21875,
+      "input_tokens": 1754,
+      "output_tokens": 397,
+      "seconds": 72.7,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-10",
+      "request": "Add a `delete <id>` command to the CLI. It deletes the task and outputs \"Deleted #<id>\".",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/cli.py",
+        "taskq/store.py",
+        "tests/test_taskq.py",
+        "taskq/formatting.py",
+        "taskq/models.py",
+        "taskq/dates.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.00821314102564108,
+      "input_tokens": 2039,
+      "output_tokens": 660,
+      "seconds": 115.4,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-11",
+      "request": "Add a --pending flag to the CLI's list command so it shows only tasks that aren't done.",
+      "completed": false,
+      "committed": false,
+      "hidden_passed": false,
+      "attempts": [
+        "tests_failed",
+        "no_edits"
+      ],
+      "blocked": 1,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/cli.py",
+        "tests/test_taskq.py",
+        "taskq/store.py",
+        "taskq/formatting.py",
+        "taskq/__init__.py",
+        "taskq/models.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.0983573717948718,
+      "input_tokens": 4366,
+      "output_tokens": 580,
+      "seconds": 232.3,
+      "error": "No passing edit after 2 attempt(s).",
+      "hidden_output": ""
+    },
+    {
+      "id": "tq-12",
+      "request": "Let the CLI's add command take a --tag option that can be repeated to attach several tags.",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "no_edits",
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/formatting.py",
+        "taskq/cli.py",
+        "taskq/store.py",
+        "taskq/models.py",
+        "tests/test_taskq.py",
+        "taskq/dates.py",
+        "taskq/__init__.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.0,
+      "input_tokens": 6425,
+      "output_tokens": 793,
+      "seconds": 364.6,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-13",
+      "request": "Add JSON persistence: TaskStore.save(path) writes all tasks to a JSON file, and a TaskStore.load(path) classmethod reads them back, keeping ids, done status, priority, tags and due dates. New tasks added after loading must get ids that don't collide.",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "tests_failed",
+        "committed"
+      ],
+      "blocked": 1,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/store.py",
+        "tests/test_taskq.py",
+        "taskq/models.py",
+        "taskq/cli.py",
+        "taskq/formatting.py",
+        "taskq/dates.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.00821314102564108,
+      "input_tokens": 5506,
+      "output_tokens": 2528,
+      "seconds": 344.6,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-14",
+      "request": "Add a summary(tasks) function to the formatting module that returns text like \"3 tasks, 1 done\". Use \"1 task\" (singular) when there is exactly one task.",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/dates.py",
+        "taskq/formatting.py",
+        "taskq/store.py",
+        "taskq/cli.py",
+        "tests/test_taskq.py",
+        "taskq/models.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.00821314102564108,
+      "input_tokens": 2052,
+      "output_tokens": 460,
+      "seconds": 261.4,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-15",
+      "request": "Let TaskStore.list take sort=\"priority\" to order tasks by priority (most important first), breaking ties by id. The default order stays by id.",
+      "completed": false,
+      "committed": false,
+      "error": "LLMError: HTTP 429 from https://generativelanguage.googleapis.com/v1beta/openai/chat/completions: [{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\\nPlease retry in 23h20m15.593921196s.\",\n    \"status\": \"RESOURCE_EXHAUSTED\"",
+      "attempts": [],
+      "blocked": 0,
+      "leaked": 0,
+      "recall": false,
+      "context_reduction": 0.0,
+      "api_error": true
+    }
+  ]
+}
