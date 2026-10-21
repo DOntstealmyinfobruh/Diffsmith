@@ -5,18 +5,18 @@
     "model": "gemini-3.8-flash",
     "embedder": "hashing",
     "padding_files": 0,
-    "tasks": 15,
-    "retrieval_recall": 0.9333,
-    "avg_context_reduction": 0.0332,
-    "completed": 13,
-    "completion_rate": 0.8667,
-    "broken_edits_blocked": 3,
-    "broken_edits_committed": 0,
-    "block_rate": 1.0,
-    "input_tokens": 41237,
-    "output_tokens": 9791,
-    "wall_seconds": 2247.5,
-    "tasks_remaining": 36
+    "tasks": 26,
+    "retrieval_recall": 0.9615,
+    "avg_context_reduction": 0.0606,
+    "completed": 23,
+    "completion_rate": 0.8846,
+    "broken_edits_blocked": 4,
+    "broken_edits_committed": 1,
+    "block_rate": 0.8,
+    "input_tokens": 59899,
+    "output_tokens": 14537,
+    "wall_seconds": 4338.7,
+    "tasks_remaining": 25
   },
   "tasks": [
     {
@@ -405,9 +405,307 @@
     {
       "id": "tq-15",
       "request": "Let TaskStore.list take sort=\"priority\" to order tasks by priority (most important first), breaking ties by id. The default order stays by id.",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "tests_failed",
+        "committed"
+      ],
+      "blocked": 1,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/store.py",
+        "taskq/cli.py",
+        "tests/test_taskq.py",
+        "taskq/formatting.py",
+        "taskq/models.py",
+        "taskq/dates.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.00821314102564108,
+      "input_tokens": 4970,
+      "output_tokens": 1052,
+      "seconds": 447.9,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-16",
+      "request": "Completing a task that is already done should raise a ValueError instead of silently succeeding.",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "taskq/models.py",
+        "tests/test_taskq.py",
+        "taskq/store.py",
+        "taskq/cli.py",
+        "taskq/formatting.py",
+        "taskq/dates.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.00821314102564108,
+      "input_tokens": 2031,
+      "output_tokens": 336,
+      "seconds": 262.9,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tq-17",
+      "request": "Add an uncomplete(task_id) method to TaskStore that marks a task as not done, and an `undo <id>` CLI command that calls it and prints the task.",
+      "completed": false,
+      "committed": true,
+      "hidden_passed": false,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 1,
+      "retrieved": [
+        "taskq/store.py",
+        "taskq/cli.py",
+        "tests/test_taskq.py",
+        "taskq/formatting.py",
+        "taskq/models.py",
+        "taskq/dates.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.00821314102564108,
+      "input_tokens": 2052,
+      "output_tokens": 711,
+      "seconds": 110.5,
+      "error": null,
+      "hidden_output": "F........                                                                [100%]\n=================================== FAILURES ===================================\n__________________________________ test_undo ___________________________________\n\n    def test_undo():\n        s = TaskStore(); run([\"add\", \"a\"], s); run([\"done\", \"1\"], s)\n>       assert run([\"undo\", \"1\"], s) == \"[ ] #1 a\"\n               ^^^^^^^^^^^^^^^^^^^^^\n\n../test_hidden_tq_17.py:6: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nargv = ['undo', '1'], store = <taskq.store.TaskStore object at 0x7fe24c84c050>\n\n    def run(argv, store=None):\n        \"\"\"Run one command against a store and return the output text.\"\"\"\n        store = store if store is not None else TaskStore()\n        args = build_parser().parse_args(argv)\n        if args.command == \"add\":\n            due = parse_due(args.due) if args.due else None\n            return format_task(store.add(args.title, args.priority, due=due))\n        if args.command == \"list\":\n            return format_list(store.list())\n        if args.command == \"done\":\n            return format_task(store.complete(args.id))\n>       raise AssertionError(args.command)\nE       AssertionError: undo\n\ntaskq/cli.py:38: AssertionError\n=========================== short test summary info ============================\nFAILED ../test_hidden_tq_17.py::test_undo - AssertionError: undo\n1 failed, 8 passed in 0.04s\n"
+    },
+    {
+      "id": "tk-01",
+      "request": "slugify should turn accented letters into plain ASCII, so \"Caf\u00e9 D\u00e9j\u00e0 Vu\" becomes \"cafe-deja-vu\".",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/slug.py",
+        "tests/test_textkit.py",
+        "textkit/__init__.py",
+        "textkit/clean.py",
+        "textkit/case.py",
+        "textkit/wrap.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.14794215795328147,
+      "input_tokens": 1176,
+      "output_tokens": 302,
+      "seconds": 198.1,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-02",
+      "request": "Add an optional max_length argument to slugify. Cut the slug to at most that many characters, and never leave a hyphen at the end after cutting.",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/stats.py",
+        "textkit/slug.py",
+        "tests/test_textkit.py",
+        "textkit/__init__.py",
+        "textkit/case.py",
+        "textkit/wrap.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.05635891731553577,
+      "input_tokens": 1268,
+      "output_tokens": 340,
+      "seconds": 91.5,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-03",
+      "request": "Let slugify take a sep argument for the separator, defaulting to \"-\". For example slugify(\"Hello World\", sep=\"_\") gives \"hello_world\".",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/slug.py",
+        "tests/test_textkit.py",
+        "textkit/clean.py",
+        "textkit/case.py",
+        "textkit/__init__.py",
+        "textkit/wrap.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.14794215795328147,
+      "input_tokens": 1181,
+      "output_tokens": 265,
+      "seconds": 108.8,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-04",
+      "request": "to_snake mishandles acronyms: \"parseHTTPRequest\" should become \"parse_http_request\" and \"HTTPServer\" should become \"http_server\".",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/case.py",
+        "tests/test_textkit.py",
+        "textkit/clean.py",
+        "textkit/__init__.py",
+        "textkit/slug.py",
+        "textkit/wrap.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.14794215795328147,
+      "input_tokens": 1183,
+      "output_tokens": 337,
+      "seconds": 104.8,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-05",
+      "request": "to_camel should also accept kebab-case and space-separated words, e.g. \"parse-http request\" -> \"parseHttpRequest\".",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/case.py",
+        "tests/test_textkit.py",
+        "textkit/stats.py",
+        "textkit/clean.py",
+        "textkit/__init__.py",
+        "textkit/slug.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.20207638116425664,
+      "input_tokens": 1172,
+      "output_tokens": 333,
+      "seconds": 145.6,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-06",
+      "request": "Add a to_pascal function to the case module: \"parse_http_request\" -> \"ParseHttpRequest\".",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/case.py",
+        "tests/test_textkit.py",
+        "textkit/slug.py",
+        "textkit/clean.py",
+        "textkit/__init__.py",
+        "textkit/wrap.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.14794215795328147,
+      "input_tokens": 1173,
+      "output_tokens": 380,
+      "seconds": 144.9,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-07",
+      "request": "Add to_kebab(name) that converts camelCase or snake_case to kebab-case: \"parseHttpRequest\" -> \"parse-http-request\".",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/case.py",
+        "tests/test_textkit.py",
+        "textkit/slug.py",
+        "textkit/clean.py",
+        "textkit/__init__.py",
+        "textkit/wrap.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.14794215795328147,
+      "input_tokens": 1182,
+      "output_tokens": 377,
+      "seconds": 174.4,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-08",
+      "request": "word_count should treat hyphenated words like \"well-known\" as one word, and count numbers and words with digits (\"2026\", \"3D\") as words.",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/stats.py",
+        "tests/test_textkit.py",
+        "textkit/wrap.py",
+        "textkit/case.py",
+        "textkit/slug.py",
+        "textkit/__init__.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.05635891731553577,
+      "input_tokens": 1274,
+      "output_tokens": 313,
+      "seconds": 187.1,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-09",
+      "request": "Give top_words a skip_stopwords flag (default False). When it's on, ignore the words the, a, an, and, or, of, to and in.",
       "completed": false,
       "committed": false,
-      "error": "LLMError: HTTP 429 from https://generativelanguage.googleapis.com/v1beta/openai/chat/completions: [{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\\nPlease retry in 23h20m15.593921196s.\",\n    \"status\": \"RESOURCE_EXHAUSTED\"",
+      "error": "LLMError: HTTP 429 from https://generativelanguage.googleapis.com/v1beta/openai/chat/completions: [{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\\nPlease retry in 23h8m22.629663769s.\",\n    \"status\": \"RESOURCE_EXHAUSTED\",",
       "attempts": [],
       "blocked": 0,
       "leaked": 0,
