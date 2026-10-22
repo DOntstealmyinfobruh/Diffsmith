@@ -5,18 +5,18 @@
     "model": "gemini-3.8-flash",
     "embedder": "hashing",
     "padding_files": 0,
-    "tasks": 26,
-    "retrieval_recall": 0.9615,
-    "avg_context_reduction": 0.0606,
-    "completed": 23,
-    "completion_rate": 0.8846,
-    "broken_edits_blocked": 4,
+    "tasks": 34,
+    "retrieval_recall": 0.9706,
+    "avg_context_reduction": 0.0858,
+    "completed": 30,
+    "completion_rate": 0.8824,
+    "broken_edits_blocked": 5,
     "broken_edits_committed": 1,
-    "block_rate": 0.8,
-    "input_tokens": 59899,
-    "output_tokens": 14537,
-    "wall_seconds": 4338.7,
-    "tasks_remaining": 25
+    "block_rate": 0.8333,
+    "input_tokens": 75994,
+    "output_tokens": 18487,
+    "wall_seconds": 5021.9,
+    "tasks_remaining": 17
   },
   "tasks": [
     {
@@ -703,9 +703,225 @@
     {
       "id": "tk-09",
       "request": "Give top_words a skip_stopwords flag (default False). When it's on, ignore the words the, a, an, and, or, of, to and in.",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "tests_failed",
+        "committed"
+      ],
+      "blocked": 1,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/stats.py",
+        "tests/test_textkit.py",
+        "textkit/slug.py",
+        "textkit/case.py",
+        "textkit/__init__.py",
+        "textkit/clean.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.20207638116425664,
+      "input_tokens": 3118,
+      "output_tokens": 947,
+      "seconds": 72.6,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-10",
+      "request": "Add sentence_count(text) to the stats module. Sentences end with . ! or ?; text without an ending mark still counts as one sentence, and empty text has zero.",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "no_edits",
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/stats.py",
+        "tests/test_textkit.py",
+        "textkit/slug.py",
+        "textkit/clean.py",
+        "textkit/wrap.py",
+        "textkit/__init__.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.13422321097515755,
+      "input_tokens": 2773,
+      "output_tokens": 636,
+      "seconds": 143.9,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-11",
+      "request": "reading_time_minutes should return 0 for empty or whitespace-only text instead of 1. Non-empty text still takes at least 1 minute.",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "tests/test_textkit.py",
+        "textkit/stats.py",
+        "textkit/clean.py",
+        "textkit/slug.py",
+        "textkit/__init__.py",
+        "textkit/wrap.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.13422321097515755,
+      "input_tokens": 1194,
+      "output_tokens": 223,
+      "seconds": 12.2,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-12",
+      "request": "wrap() leaves words longer than the width sticking out. Split such words across lines so no line is longer than width.",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "no_edits",
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/wrap.py",
+        "textkit/stats.py",
+        "tests/test_textkit.py",
+        "textkit/case.py",
+        "textkit/__init__.py",
+        "textkit/clean.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.06266221727845755,
+      "input_tokens": 2872,
+      "output_tokens": 632,
+      "seconds": 130.1,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-13",
+      "request": "Add an ellipsis argument to truncate (default \"...\") so callers can use a different marker such as the single character \"\u2026\". The result must still fit within limit.",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/wrap.py",
+        "tests/test_textkit.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.41490545050055616,
+      "input_tokens": 867,
+      "output_tokens": 304,
+      "seconds": 48.9,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-14",
+      "request": "Add a whole_words option to truncate. When true, don't cut a word in half: back off to the last space that fits, then add the ellipsis.",
       "completed": false,
       "committed": false,
-      "error": "LLMError: HTTP 429 from https://generativelanguage.googleapis.com/v1beta/openai/chat/completions: [{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\\nPlease retry in 23h8m22.629663769s.\",\n    \"status\": \"RESOURCE_EXHAUSTED\",",
+      "hidden_passed": false,
+      "attempts": [
+        "no_edits",
+        "no_edits"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "tests/test_textkit.py",
+        "textkit/stats.py",
+        "textkit/wrap.py",
+        "textkit/case.py",
+        "textkit/__init__.py",
+        "textkit/slug.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.05635891731553577,
+      "input_tokens": 2916,
+      "output_tokens": 635,
+      "seconds": 152.1,
+      "error": "No passing edit after 2 attempt(s).",
+      "hidden_output": ""
+    },
+    {
+      "id": "tk-15",
+      "request": "strip_html should also decode HTML entities such as &amp;, &lt;, &gt;, &quot; and &#39;.",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/clean.py",
+        "tests/test_textkit.py",
+        "textkit/slug.py",
+        "textkit/stats.py",
+        "textkit/case.py",
+        "textkit/__init__.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.20207638116425664,
+      "input_tokens": 1169,
+      "output_tokens": 284,
+      "seconds": 29.5,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-16",
+      "request": "Add normalize_quotes(text) to the clean module. It replaces curly single quotes with ' and curly double quotes with \".",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/clean.py",
+        "tests/test_textkit.py",
+        "textkit/slug.py",
+        "textkit/wrap.py",
+        "textkit/stats.py",
+        "textkit/__init__.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.13422321097515755,
+      "input_tokens": 1186,
+      "output_tokens": 289,
+      "seconds": 28.5,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "tk-17",
+      "request": "strip_html should remove <script> and <style> blocks completely, including the code inside them, not just the tags.",
+      "completed": false,
+      "committed": false,
+      "error": "LLMError: HTTP 429 from https://generativelanguage.googleapis.com/v1beta/openai/chat/completions: [{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\\nPlease retry in 23h26m37.09773844s.\",\n    \"status\": \"RESOURCE_EXHAUSTED\",",
       "attempts": [],
       "blocked": 0,
       "leaked": 0,
