@@ -5,18 +5,18 @@
     "model": "gemini-3.8-flash",
     "embedder": "hashing",
     "padding_files": 0,
-    "tasks": 34,
-    "retrieval_recall": 0.9706,
-    "avg_context_reduction": 0.0858,
-    "completed": 30,
-    "completion_rate": 0.8824,
-    "broken_edits_blocked": 5,
-    "broken_edits_committed": 1,
-    "block_rate": 0.8333,
-    "input_tokens": 75994,
-    "output_tokens": 18487,
-    "wall_seconds": 5021.9,
-    "tasks_remaining": 17
+    "tasks": 44,
+    "retrieval_recall": 0.9545,
+    "avg_context_reduction": 0.0817,
+    "completed": 37,
+    "completion_rate": 0.8409,
+    "broken_edits_blocked": 6,
+    "broken_edits_committed": 2,
+    "block_rate": 0.75,
+    "input_tokens": 94516,
+    "output_tokens": 22044,
+    "wall_seconds": 6981.1,
+    "tasks_remaining": 8
   },
   "tasks": [
     {
@@ -919,9 +919,267 @@
     {
       "id": "tk-17",
       "request": "strip_html should remove <script> and <style> blocks completely, including the code inside them, not just the tags.",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "textkit/clean.py",
+        "tests/test_textkit.py",
+        "textkit/wrap.py",
+        "textkit/slug.py",
+        "textkit/stats.py",
+        "textkit/__init__.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.13422321097515755,
+      "input_tokens": 1187,
+      "output_tokens": 283,
+      "seconds": 169.6,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "lg-01",
+      "request": "Let Money be multiplied by an integer, on either side: Money(250) * 3 and 3 * Money(250) both give Money(750).",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "ledger/money.py",
+        "tests/test_ledger.py",
+        "ledger/__init__.py",
+        "ledger/fx.py",
+        "ledger/account.py",
+        "ledger/report.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.032929782082324444,
+      "input_tokens": 1657,
+      "output_tokens": 311,
+      "seconds": 108.4,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "lg-02",
+      "request": "Make Money amounts comparable with <, <=, > and >= when they share a currency. Comparing different currencies should raise CurrencyMismatch.",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "ledger/money.py",
+        "ledger/__init__.py",
+        "tests/test_ledger.py",
+        "ledger/account.py",
+        "ledger/errors.py",
+        "ledger/fx.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.1324455205811138,
+      "input_tokens": 1519,
+      "output_tokens": 601,
+      "seconds": 57.3,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "lg-03",
+      "request": "Money.from_str should accept a leading \"$\" and thousands separators, e.g. \"$1,234.50\".",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "tests/test_ledger.py",
+        "ledger/money.py",
+        "ledger/account.py",
+        "ledger/fx.py",
+        "ledger/__init__.py",
+        "ledger/report.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.032929782082324444,
+      "input_tokens": 1646,
+      "output_tokens": 497,
+      "seconds": 91.2,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "lg-04",
+      "request": "Money.from_str silently drops digits after the second decimal place. It should raise ValueError for amounts like \"1.234\" instead.",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "ledger/account.py",
+        "tests/test_ledger.py",
+        "ledger/__init__.py",
+        "ledger/money.py",
+        "ledger/errors.py",
+        "ledger/fx.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.1324455205811138,
+      "input_tokens": 1523,
+      "output_tokens": 212,
+      "seconds": 78.9,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "lg-05",
+      "request": "Money.from_str crashes on amounts with nothing before the decimal point. Make \".5\" and \"-.75\" work.",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "ledger/__init__.py",
+        "tests/test_ledger.py",
+        "ledger/money.py",
+        "ledger/account.py",
+        "ledger/fx.py",
+        "ledger/errors.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.1324455205811138,
+      "input_tokens": 1520,
+      "output_tokens": 261,
+      "seconds": 202.7,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "lg-06",
+      "request": "Format Money with thousands separators, e.g. Money(123456789) prints as \"1,234,567.89 USD\".",
+      "completed": true,
+      "committed": true,
+      "hidden_passed": true,
+      "attempts": [
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 0,
+      "retrieved": [
+        "tests/test_ledger.py",
+        "ledger/fx.py",
+        "ledger/money.py",
+        "ledger/account.py",
+        "ledger/__init__.py",
+        "ledger/report.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.032929782082324444,
+      "input_tokens": 1657,
+      "output_tokens": 257,
+      "seconds": 163.1,
+      "error": null,
+      "hidden_output": null
+    },
+    {
+      "id": "lg-07",
+      "request": "Add Account.transfer(to_account, amount) that moves money between accounts. It must raise InsufficientFunds when the balance is too low and CurrencyMismatch when the accounts use different currencies, without changing either account in those cases.",
       "completed": false,
       "committed": false,
-      "error": "LLMError: HTTP 429 from https://generativelanguage.googleapis.com/v1beta/openai/chat/completions: [{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\\nPlease retry in 23h26m37.09773844s.\",\n    \"status\": \"RESOURCE_EXHAUSTED\",",
+      "error": "LLMError: HTTP 503 from https://generativelanguage.googleapis.com/v1beta/openai/chat/completions: [{\n  \"error\": {\n    \"code\": 503,\n    \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\n    \"status\": \"UNAVAILABLE\"\n  }\n}\n]",
+      "attempts": [],
+      "blocked": 0,
+      "leaked": 0,
+      "recall": false,
+      "context_reduction": 0.0,
+      "api_error": true
+    },
+    {
+      "id": "lg-08",
+      "request": "Depositing or withdrawing money in a different currency than the account's should raise CurrencyMismatch right away and leave the account unchanged.",
+      "completed": false,
+      "committed": false,
+      "hidden_passed": false,
+      "attempts": [
+        "tests_failed",
+        "no_edits"
+      ],
+      "blocked": 1,
+      "leaked": 0,
+      "retrieved": [
+        "ledger/money.py",
+        "ledger/account.py",
+        "tests/test_ledger.py",
+        "ledger/errors.py",
+        "ledger/report.py",
+        "ledger/fx.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.012348668280871666,
+      "input_tokens": 4122,
+      "output_tokens": 497,
+      "seconds": 233.6,
+      "error": "No passing edit after 2 attempt(s).",
+      "hidden_output": ""
+    },
+    {
+      "id": "lg-09",
+      "request": "Add an optional overdraft limit to Account, passed as Account(owner, overdraft=Money(...)). Withdrawals may take the balance negative down to minus that limit. Without it, behavior is unchanged.",
+      "completed": false,
+      "committed": true,
+      "hidden_passed": false,
+      "attempts": [
+        "no_edits",
+        "committed"
+      ],
+      "blocked": 0,
+      "leaked": 1,
+      "retrieved": [
+        "ledger/account.py",
+        "ledger/report.py",
+        "tests/test_ledger.py",
+        "ledger/money.py",
+        "ledger/fx.py",
+        "ledger/__init__.py"
+      ],
+      "recall": true,
+      "context_reduction": 0.032929782082324444,
+      "input_tokens": 3691,
+      "output_tokens": 638,
+      "seconds": 364.1,
+      "error": null,
+      "hidden_output": "F....                                                                    [100%]\n=================================== FAILURES ===================================\n________________________________ test_overdraft ________________________________\n\n    def test_overdraft():\n        a = Account(\"a\", overdraft=Money(500))\n        a.deposit(Money(1000))\n>       a.withdraw(Money(1500))\n\n../test_hidden_lg_09.py:9: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <ledger.account.Account object at 0x7ff2bec5c1a0>\namount = Money(cents=1500, currency='USD')\n\n    def withdraw(self, amount):\n        if amount.cents <= 0:\n            raise ValueError(\"withdrawal must be positive\")\n        if amount.cents > self.balance.cents:\n>           raise InsufficientFunds(str(amount))\nE           ledger.errors.InsufficientFunds: 15.00 USD\n\nledger/account.py:32: InsufficientFunds\n=========================== short test summary info ============================\nFAILED ../test_hidden_lg_09.py::test_overdraft - ledger.errors.InsufficientFu...\n1 failed, 4 passed in 0.04s\n"
+    },
+    {
+      "id": "lg-10",
+      "request": "Let deposit and withdraw take an optional memo string. The statement should show the memo after the amount, separated by two spaces, e.g. \"deposit  10.00 USD  paycheck\". Lines without a memo stay the same, and the CSV export is unchanged.",
+      "completed": false,
+      "committed": false,
+      "error": "LLMError: HTTP 429 from https://generativelanguage.googleapis.com/v1beta/openai/chat/completions: [{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\\nPlease retry in 23h7m44.348844783s.\",\n    \"status\": \"RESOURCE_EXHAUSTED\",",
       "attempts": [],
       "blocked": 0,
       "leaked": 0,
