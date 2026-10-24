@@ -118,7 +118,9 @@ python eval/run_eval.py --oracle                # verify every task and check, n
 | `--retrieval-only`, no padding | Every file each task needs was found | 100% |
 | `--retrieval-only`, +1,000 files | Needed files found / share of code *not* sent | 98% / 99.5% |
 | `--retrieval-only`, +10,000 files | Needed files found / share of code *not* sent | 96% / 99.9% |
-| **Full run with a model** | **Completion rate, broken edits blocked** | ***run `python eval/run_eval.py` and fill in, naming the model*** |
+| **Full run, Gemini 3.8 Flash** (free tier) | **Tasks completed / broken edits blocked by the test gate** | **44/50 (88%) / 8 of 10 (80%)** |
+
+In the full run, 8 of the 44 completed tasks passed only on the second attempt, after the test gate rolled back the first edit and sent the failure back to the model. Of the 6 failures, 2 were edits that passed the project's own tests but failed the hidden check (`tq-17`, `lg-09`); the other 4 never produced a passing edit, so nothing was committed. The run used 112,765 input and 27,683 output tokens. Because the free tier allows 20 requests a day, it ran over five days with `--resume`; results are in `eval/results/full-gemini-3.8-flash.json`.
 
 Retrieval numbers above use the hashing fallback embedder (the only one available in the build environment); the local model should match or beat them. The context-reduction figure depends on repository size: in the unpadded 7-file fixtures, sending 6 files saves only about 8%. Raw JSON for each run is in `eval/results/`.
 
